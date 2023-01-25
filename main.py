@@ -1,13 +1,12 @@
 import json
+from typing import Mapping
 
 import google.auth.transport.requests as req
-from requests import Request
-from google.auth import jwt
-from google.oauth2.credentials import Credentials
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
+from google.auth import jwt
+from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import Flow
-from typing import Mapping
 
 app = FastAPI()
 GOOGLE_SCOPE = ["https://www.googleapis.com/auth/userinfo.email", "openid"]
@@ -17,7 +16,7 @@ flow.redirect_uri = "http://localhost:8000/login"
 
 
 def get_client_info_from_json():
-    with open('client_secret.json') as json_file:
+    with open("client_secret.json") as json_file:
         data = json.load(json_file)
         res = {"client_id": data["web"]["client_id"], "client_secret": data["web"]["client_secret"]}
     return res
@@ -50,8 +49,9 @@ async def exchange_authcode(code: str) -> Mapping[str, str]:
 
 @app.get("/auth")
 async def redirect() -> RedirectResponse:
-    url = flow.authorization_url(access_type="offline",
-                                 )[0]
+    url = flow.authorization_url(
+        access_type="offline",
+    )[0]
     return RedirectResponse(url)
 
 
