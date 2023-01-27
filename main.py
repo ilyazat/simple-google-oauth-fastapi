@@ -44,7 +44,7 @@ async def exchange_authcode(code: str) -> Mapping[str, str]:
     credentials = flow.credentials
     user_info = jwt.decode(credentials._id_token, verify=False)
 
-    return credentials
+    return credentials._id_token
 
 
 @app.get("/auth")

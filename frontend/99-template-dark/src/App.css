@@ -1,0 +1,31 @@
+.App {
+	text-align: center;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 30px;
+	margin: 200px auto;
+	width: 800px;
+	background-color: white;
+	color: black;
+	padding: 30px;
+	border-radius: 15px;
+
+}
+
+h1 {
+	font-size: 90px;
+	margin-top: 20px;
+}
+
+button {
+	padding: 15px;
+	font-size: 30px;
+	border-radius: 5px;
+	margin: 20px;
+	cursor: pointer;
+	border: 0;
+}
+
+.google-btn {
+	display: inline-flex;
+	font-size: 30px;
+}
